@@ -1,0 +1,1 @@
+<div id="<?= $map_id?>" style="width: <?= $width;?>px; height: <?= $height;?>px;"></div>

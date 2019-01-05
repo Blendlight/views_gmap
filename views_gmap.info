@@ -1,0 +1,17 @@
+name = Google Map Views Plugin
+description = Create Map of content in view
+core = 7.x
+
+;Admin Configuration
+configure = admin/config/gmap/key
+
+;Dependencies
+dependencies[] = views
+
+
+;Files
+files[] = plugins/views_gmap/views_views_gmap_plugin_style.inc
+
+
+
+

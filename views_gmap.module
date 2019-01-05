@@ -1,0 +1,55 @@
+<?php
+
+
+/**
+* Implements hook_views_api().
+*/
+function views_gmap_views_api() {
+    return array("api" => "3.0");
+}
+
+/**
+* Implements hook_menu().
+*/
+function views_gmap_menu()
+{
+    $menus['admin/config/gmap/key'] = array(
+        'title' => 'Google Map API Key',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('gmap_key_config_form'),
+        'access arguments' => array('administer site configuration'),
+    );
+    
+    
+    return $menus;
+}
+
+function gmap_key_config_form($form, &$form_state)
+{
+
+    $key = variable_get('views_gmap_api_key');
+
+    $key = $key?$key:'';
+
+
+
+    $form['api_key'] = array(
+        '#title' => 'Google Map API Key',
+        '#type' => 'textfield',
+        '#default_value' => $key
+    );
+
+    $form['action'] = array(
+        '#type' => 'submit',
+        '#value' => 'Save'
+    );
+
+    return $form;
+}
+
+
+function gmap_key_config_form_submit($form, &$form_state)
+{
+    $api_key = $form_state['values']['api_key'];
+    variable_set('views_gmap_api_key', $api_key);
+}
